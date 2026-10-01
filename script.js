@@ -1,4 +1,5 @@
 let mods = [];
+
 let currentCategory = "all";
 
 
@@ -33,13 +34,9 @@ function renderMods() {
             mod.category === currentCategory;
 
         const searchMatch =
-            mod.name
-                .toLowerCase()
-                .includes(search) ||
-
-            mod.brand
-                .toLowerCase()
-                .includes(search);
+            mod.name.toLowerCase().includes(search) ||
+            mod.brand.toLowerCase().includes(search) ||
+            mod.model.toLowerCase().includes(search);
 
         return categoryMatch && searchMatch;
 
@@ -63,10 +60,16 @@ function renderMods() {
 
                 ${
                     mod.image
+
                     ?
-                    `<img src="${mod.image}"
-                          alt="${mod.name}">`
+
+                    `<img
+                        src="${mod.image}"
+                        alt="${mod.name}"
+                    >`
+
                     :
+
                     `<div class="placeholder">
                         ${mod.name}
                     </div>`
@@ -105,16 +108,29 @@ function renderMods() {
                 </div>
 
 
-                <a
-    href="mod.html?id=${mod.id}"
-    class="download"
->
-    VIEW MOD
-</a>
+                <div class="download">
+                    VIEW MOD
+                </div>
 
             </div>
 
         `;
+
+
+        /*
+         * Вся картка відкриває
+         * сторінку мода
+         */
+
+        card.addEventListener(
+            "click",
+            () => {
+
+                window.location.href =
+                    `mod.html?id=${mod.id}`;
+
+            }
+        );
 
 
         grid.appendChild(card);
@@ -128,14 +144,22 @@ function filterMods(category) {
 
     currentCategory = category;
 
+
     document
         .querySelectorAll(".filter button")
         .forEach(button => {
+
             button.classList.remove("active");
+
         });
 
 
-    event.target.classList.add("active");
+    if (event && event.target) {
+
+        event.target.classList.add("active");
+
+    }
+
 
     renderMods();
 
