@@ -77,22 +77,34 @@
             <h2>Latest Mods</h2>
         </div>
 
-        <div class="filter">
-            <button class="active" onclick="filterMods('all')">
-                All
-            </button>
+       <div class="filter">
 
-            <button onclick="filterMods('cars')">
-                Cars
-            </button>
+    <button
+        class="active"
+        onclick="filterMods('all', this)"
+    >
+        All
+    </button>
 
-            <button onclick="filterMods('maps')">
-                Maps
-            </button>
+    <button
+        onclick="filterMods('cars', this)"
+    >
+        Cars
+    </button>
 
-            <button onclick="filterMods('parts')">
-                Parts
-            </button>
+    <button
+        onclick="filterMods('maps', this)"
+    >
+        Maps
+    </button>
+
+    <button
+        onclick="filterMods('parts', this)"
+    >
+        Parts
+    </button>
+
+</div>
         </div>
 
     </div>
