@@ -735,3 +735,192 @@ function showError(message) {
 
 
 loadMod();
+document.addEventListener("click", function(event) {
+
+    const image = event.target.closest(".screenshot img");
+
+    if (!image) return;
+
+    openLightbox(image);
+
+});
+
+
+function openLightbox(clickedImage) {
+
+    const images = [
+        ...document.querySelectorAll(".screenshot img")
+    ];
+
+    const currentIndex =
+        images.indexOf(clickedImage);
+
+
+    const overlay =
+        document.createElement("div");
+
+    overlay.className = "lightbox";
+
+
+    overlay.innerHTML = `
+
+        <button class="lightbox-close">
+            ×
+        </button>
+
+        <button class="lightbox-prev">
+            ←
+        </button>
+
+        <div class="lightbox-content">
+
+            <img
+                src="${clickedImage.src}"
+                alt="${clickedImage.alt}"
+            >
+
+        </div>
+
+        <button class="lightbox-next">
+            →
+        </button>
+
+    `;
+
+
+    document.body.appendChild(overlay);
+
+    document.body.style.overflow = "hidden";
+
+
+    let index = currentIndex;
+
+
+    const lightboxImage =
+        overlay.querySelector(
+            ".lightbox-content img"
+        );
+
+
+    function updateImage() {
+
+        if (index < 0) {
+            index = images.length - 1;
+        }
+
+        if (index >= images.length) {
+            index = 0;
+        }
+
+        lightboxImage.src =
+            images[index].src;
+
+        lightboxImage.alt =
+            images[index].alt;
+
+    }
+
+
+    overlay
+        .querySelector(".lightbox-prev")
+        .addEventListener(
+            "click",
+            function(event) {
+
+                event.stopPropagation();
+
+                index--;
+
+                updateImage();
+
+            }
+        );
+
+
+    overlay
+        .querySelector(".lightbox-next")
+        .addEventListener(
+            "click",
+            function(event) {
+
+                event.stopPropagation();
+
+                index++;
+
+                updateImage();
+
+            }
+        );
+
+
+    overlay
+        .querySelector(".lightbox-close")
+        .addEventListener(
+            "click",
+            closeLightbox
+        );
+
+
+    overlay.addEventListener(
+        "click",
+        function(event) {
+
+            if (
+                event.target === overlay
+            ) {
+
+                closeLightbox();
+
+            }
+
+        }
+    );
+
+
+    function closeLightbox() {
+
+        overlay.remove();
+
+        document.body.style.overflow = "";
+
+        document.removeEventListener(
+            "keydown",
+            keyboardNavigation
+        );
+
+    }
+
+
+    function keyboardNavigation(event) {
+
+        if (event.key === "Escape") {
+
+            closeLightbox();
+
+        }
+
+        if (event.key === "ArrowLeft") {
+
+            index--;
+
+            updateImage();
+
+        }
+
+        if (event.key === "ArrowRight") {
+
+            index++;
+
+            updateImage();
+
+        }
+
+    }
+
+
+    document.addEventListener(
+        "keydown",
+        keyboardNavigation
+    );
+
+}
