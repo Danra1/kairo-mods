@@ -292,6 +292,24 @@ a {
             #0d0d0d 80%
         );
 }
+.mod-image {
+    position: relative;
+    overflow: hidden;
+}
+
+.mod-image img {
+    transition: transform 0.4s;
+}
+
+.mod-card:hover .mod-image img {
+    transform: scale(1.05);
+}
+.mod-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
 
 .placeholder {
     font-size: 40px;
