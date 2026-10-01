@@ -1,66 +1,170 @@
 async function loadMod() {
 
-    const params =
-        new URLSearchParams(
-            window.location.search
-        );
+    const params = new URLSearchParams(
+        window.location.search
+    );
 
-
-    const id =
-        params.get("id");
-
+    const id = params.get("id");
 
     if (!id) {
-
         showError("Mod not found.");
-
         return;
-
     }
 
+    try {
 
-    const response =
-        await fetch("mods.json");
+        const response = await fetch("mods.json");
 
+        if (!response.ok) {
+            throw new Error("Failed to load mods.json");
+        }
 
-    const mods =
-        await response.json();
+        const mods = await response.json();
 
-
-    const mod =
-        mods.find(
+        const mod = mods.find(
             item => item.id === id
         );
 
+        if (!mod) {
+            showError("Mod not found.");
+            return;
+        }
 
-    if (!mod) {
+        document.title =
+            `${mod.name} — KAIRO Mods`;
 
-        showError("Mod not found.");
+        renderMod(mod);
 
-        return;
+    } catch (error) {
+
+        console.error(error);
+
+        showError("Unable to load mod.");
 
     }
-
-
-    document.title =
-        `${mod.name} — KAIRO Mods`;
-
-
-    renderMod(mod);
-
 }
-
 
 
 function renderMod(mod) {
 
     const page =
-        document.getElementById(
-            "modPage"
-        );
+        document.getElementById("modPage");
+
+
+    /*
+     * SCREENSHOTS
+     */
+
+    const screenshots =
+        mod.screenshots || [];
+
+
+    const gallery =
+        screenshots.length > 0
+
+        ?
+
+        `
+        <h2>
+            Screenshots
+        </h2>
+
+        <div class="screenshots">
+
+            ${screenshots.map(image => `
+
+                <div class="screenshot">
+
+                    <img
+                        src="${image}"
+                        alt="${mod.name} screenshot"
+                        loading="lazy"
+                    >
+
+                </div>
+
+            `).join("")}
+
+        </div>
+        `
+
+        :
+
+        "";
+
+
+    /*
+     * TAGS
+     */
+
+    const tags =
+        mod.tags || [];
+
+
+    const tagsHTML =
+        tags.length > 0
+
+        ?
+
+        `
+        <div class="tags">
+
+            ${tags.map(tag => `
+
+                <span class="tag">
+                    ${tag}
+                </span>
+
+            `).join("")}
+
+        </div>
+        `
+
+        :
+
+        "";
+
+
+    /*
+     * FEATURES
+     */
+
+    const features =
+        mod.features || [];
+
+
+    /*
+     * CHANGELOG
+     */
+
+    const changelog =
+        mod.changelog || [];
+
+
+    /*
+     * INSTALLATION
+     */
+
+    const installation =
+        mod.installation || [];
 
 
     page.innerHTML = `
+
+        <!-- BACK -->
+
+        <div class="mod-back">
+
+            <a href="index.html">
+
+                ← BACK TO MODS
+
+            </a>
+
+        </div>
+
+
+        <!-- HERO -->
 
         <section class="mod-hero">
 
@@ -80,30 +184,40 @@ function renderMod(mod) {
                     :
 
                     `<div class="big-placeholder">
+
                         ${mod.name}
+
                     </div>`
                 }
 
             </div>
 
 
-
             <div class="mod-hero-info">
 
 
                 <div class="category">
+
                     ${mod.category.toUpperCase()}
+
                 </div>
 
 
                 <h1>
+
                     ${mod.name}
+
                 </h1>
 
 
                 <p class="mod-description">
+
                     ${mod.description}
+
                 </p>
+
+
+                ${tagsHTML}
 
 
                 <div class="mod-stats">
@@ -154,7 +268,7 @@ function renderMod(mod) {
                 <a
                     href="${mod.modsfire}"
                     target="_blank"
-                    rel="noopener"
+                    rel="noopener noreferrer"
                     class="big-download"
                 >
 
@@ -176,11 +290,15 @@ function renderMod(mod) {
 
 
 
+        <!-- DETAILS -->
+
         <section class="mod-details">
 
 
             <div class="details-content">
 
+
+                <!-- ABOUT -->
 
                 <h2>
                     About this mod
@@ -193,6 +311,8 @@ function renderMod(mod) {
 
 
 
+                <!-- MOD INFORMATION -->
+
                 <h2>
                     Mod Information
                 </h2>
@@ -202,6 +322,7 @@ function renderMod(mod) {
 
 
                     <div>
+
                         <span>
                             CATEGORY
                         </span>
@@ -209,10 +330,12 @@ function renderMod(mod) {
                         <strong>
                             ${mod.category}
                         </strong>
+
                     </div>
 
 
                     <div>
+
                         <span>
                             BRAND
                         </span>
@@ -220,10 +343,12 @@ function renderMod(mod) {
                         <strong>
                             ${mod.brand}
                         </strong>
+
                     </div>
 
 
                     <div>
+
                         <span>
                             MODEL
                         </span>
@@ -231,10 +356,12 @@ function renderMod(mod) {
                         <strong>
                             ${mod.model}
                         </strong>
+
                     </div>
 
 
                     <div>
+
                         <span>
                             YEAR
                         </span>
@@ -242,10 +369,12 @@ function renderMod(mod) {
                         <strong>
                             ${mod.year}
                         </strong>
+
                     </div>
 
 
                     <div>
+
                         <span>
                             VERSION
                         </span>
@@ -253,10 +382,12 @@ function renderMod(mod) {
                         <strong>
                             ${mod.version}
                         </strong>
+
                     </div>
 
 
                     <div>
+
                         <span>
                             GAME VERSION
                         </span>
@@ -264,10 +395,12 @@ function renderMod(mod) {
                         <strong>
                             ${mod.gameVersion}
                         </strong>
+
                     </div>
 
 
                     <div>
+
                         <span>
                             AUTHOR
                         </span>
@@ -275,10 +408,12 @@ function renderMod(mod) {
                         <strong>
                             ${mod.author}
                         </strong>
+
                     </div>
 
 
                     <div>
+
                         <span>
                             DOWNLOADS
                         </span>
@@ -286,12 +421,90 @@ function renderMod(mod) {
                         <strong>
                             ${mod.downloads}
                         </strong>
+
                     </div>
+
+
+                    ${
+                        mod.fileSize
+
+                        ?
+
+                        `
+                        <div>
+
+                            <span>
+                                FILE SIZE
+                            </span>
+
+                            <strong>
+                                ${mod.fileSize}
+                            </strong>
+
+                        </div>
+                        `
+
+                        :
+
+                        ""
+                    }
+
+
+                    ${
+                        mod.fileFormat
+
+                        ?
+
+                        `
+                        <div>
+
+                            <span>
+                                FORMAT
+                            </span>
+
+                            <strong>
+                                ${mod.fileFormat}
+                            </strong>
+
+                        </div>
+                        `
+
+                        :
+
+                        ""
+                    }
+
+
+                    ${
+                        mod.lastUpdated
+
+                        ?
+
+                        `
+                        <div>
+
+                            <span>
+                                UPDATED
+                            </span>
+
+                            <strong>
+                                ${mod.lastUpdated}
+                            </strong>
+
+                        </div>
+                        `
+
+                        :
+
+                        ""
+                    }
 
 
                 </div>
 
 
+
+                <!-- SPECIFICATIONS -->
 
                 <h2>
                     Specifications
@@ -344,61 +557,142 @@ function renderMod(mod) {
 
 
 
-                <h2>
-                    Features
-                </h2>
+                <!-- FEATURES -->
+
+                ${
+                    features.length > 0
+
+                    ?
+
+                    `
+
+                    <h2>
+                        Features
+                    </h2>
 
 
-                <div class="features">
+                    <div class="features">
 
-                    ${
-                        mod.features
-                            .map(
-                                feature =>
-                                    `<div class="feature">
-                                        ✓ ${feature}
-                                    </div>`
-                            )
-                            .join("")
-                    }
+                        ${features.map(feature => `
 
-                </div>
+                            <div class="feature">
 
+                                ✓ ${feature}
 
+                            </div>
 
-                <h2>
-                    Changelog
-                </h2>
+                        `).join("")}
 
+                    </div>
 
-                <div class="changelog">
+                    `
 
-                    ${
-                        mod.changelog
-                            .map(
-                                change =>
-                                    `<div>
-                                        • ${change}
-                                    </div>`
-                            )
-                            .join("")
-                    }
+                    :
 
-                </div>
+                    ""
+                }
 
 
+
+                <!-- SCREENSHOTS -->
+
+                ${gallery}
+
+
+
+                <!-- INSTALLATION -->
+
+                ${
+                    installation.length > 0
+
+                    ?
+
+                    `
+
+                    <h2>
+                        Installation
+                    </h2>
+
+
+                    <div class="installation">
+
+                        ${installation.map((step, index) => `
+
+                            <div class="installation-step">
+
+                                <span>
+                                    ${String(index + 1).padStart(2, "0")}
+                                </span>
+
+                                <p>
+                                    ${step}
+                                </p>
+
+                            </div>
+
+                        `).join("")}
+
+                    </div>
+
+                    `
+
+                    :
+
+                    ""
+                }
+
+
+
+                <!-- CHANGELOG -->
+
+                ${
+                    changelog.length > 0
+
+                    ?
+
+                    `
+
+                    <h2>
+                        Changelog
+                    </h2>
+
+
+                    <div class="changelog">
+
+                        ${changelog.map(change => `
+
+                            <div>
+                                • ${change}
+                            </div>
+
+                        `).join("")}
+
+                    </div>
+
+                    `
+
+                    :
+
+                    ""
+                }
+
+
+
+                <!-- FINAL DOWNLOAD -->
 
                 <a
                     href="${mod.modsfire}"
                     target="_blank"
-                    rel="noopener"
+                    rel="noopener noreferrer"
                     class="final-download"
                 >
 
-                    DOWNLOAD ${mod.name.toUpperCase()}
+                    <strong>
+                        DOWNLOAD ${mod.name.toUpperCase()}
+                    </strong>
 
                     <span>
-                        MODSFIRE
+                        VIA MODSFIRE →
                     </span>
 
                 </a>
@@ -406,20 +700,16 @@ function renderMod(mod) {
 
             </div>
 
-
         </section>
 
     `;
-
 }
 
 
 
 function showError(message) {
 
-    document.getElementById(
-        "modPage"
-    ).innerHTML = `
+    document.getElementById("modPage").innerHTML = `
 
         <section class="error-page">
 
@@ -441,7 +731,6 @@ function showError(message) {
         </section>
 
     `;
-
 }
 
 
