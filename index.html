@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>KAIRO Mods — BeamNG.drive Mods</title>
+    <meta name="description" content="KAIRO Mods — BeamNG.drive cars, maps and modifications.">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header class="header">
+
+    <a href="/" class="logo">
+        KAIRO<span>MODS</span>
+    </a>
+
+    <nav>
+        <a href="#cars">Cars</a>
+        <a href="#maps">Maps</a>
+        <a href="#parts">Parts</a>
+    </nav>
+
+    <a href="#mods" class="submit-btn">
+        Submit Mod
+    </a>
+
+</header>
+
+
+<main>
+
+<section class="hero">
+
+    <div class="hero-content">
+
+        <div class="badge">
+            BEAMNG.DRIVE MOD DATABASE
+        </div>
+
+        <h1>
+            DRIVE<br>
+            <span>DIFFERENT.</span>
+        </h1>
+
+        <p>
+            Discover unique cars, maps and modifications
+            for BeamNG.drive.
+        </p>
+
+        <div class="search-box">
+            <input
+                id="search"
+                type="text"
+                placeholder="Search mods..."
+            >
+
+            <button onclick="searchMods()">
+                SEARCH
+            </button>
+        </div>
+
+    </div>
+
+</section>
+
+
+<section class="mods-section" id="mods">
+
+    <div class="section-title">
+
+        <div>
+            <small>EXPLORE</small>
+            <h2>Latest Mods</h2>
+        </div>
+
+        <div class="filter">
+            <button class="active" onclick="filterMods('all')">
+                All
+            </button>
+
+            <button onclick="filterMods('cars')">
+                Cars
+            </button>
+
+            <button onclick="filterMods('maps')">
+                Maps
+            </button>
+
+            <button onclick="filterMods('parts')">
+                Parts
+            </button>
+        </div>
+
+    </div>
+
+
+    <div class="mods-grid">
+
+
+        <article class="mod-card" data-category="cars">
+
+            <div class="mod-image">
+                <div class="placeholder">
+                    BMW E39
+                </div>
+            </div>
+
+            <div class="mod-info">
+
+                <div class="category">
+                    CARS
+                </div>
+
+                <h3>
+                    BMW E39 M5
+                </h3>
+
+                <p>
+                    Legendary German sedan for BeamNG.drive.
+                </p>
+
+                <div class="mod-bottom">
+
+                    <span>
+                        ⭐ 4.9
+                    </span>
+
+                    <span>
+                        12.4K downloads
+                    </span>
+
+                </div>
+
+                <a
+                    href="https://modsfire.com/"
+                    target="_blank"
+                    class="download"
+                >
+                    DOWNLOAD
+                </a>
+
+            </div>
+
+        </article>
+
+
+        <article class="mod-card" data-category="cars">
+
+            <div class="mod-image">
+                <div class="placeholder">
+                    SUPRA
+                </div>
+            </div>
+
+            <div class="mod-info">
+
+                <div class="category">
+                    CARS
+                </div>
+
+                <h3>
+                    Toyota Supra MK4
+                </h3>
+
+                <p>
+                    Japanese legend with custom tuning.
+                </p>
+
+                <div class="mod-bottom">
+
+                    <span>
+                        ⭐ 4.8
+                    </span>
+
+                    <span>
+                        9.7K downloads
+                    </span>
+
+                </div>
+
+                <a
+                    href="https://modsfire.com/"
+                    target="_blank"
+                    class="download"
+                >
+                    DOWNLOAD
+                </a>
+
+            </div>
+
+        </article>
+
+
+        <article class="mod-card" data-category="maps">
+
+            <div class="mod-image">
+                <div class="placeholder">
+                    TOUGE
+                </div>
+            </div>
+
+            <div class="mod-info">
+
+                <div class="category">
+                    MAPS
+                </div>
+
+                <h3>
+                    Mountain Touge
+                </h3>
+
+                <p>
+                    Night mountain roads and high-speed corners.
+                </p>
+
+                <div class="mod-bottom">
+
+                    <span>
+                        ⭐ 4.7
+                    </span>
+
+                    <span>
+                        8.2K downloads
+                    </span>
+
+                </div>
+
+                <a
+                    href="https://modsfire.com/"
+                    target="_blank"
+                    class="download"
+                >
+                    DOWNLOAD
+                </a>
+
+            </div>
+
+        </article>
+
+
+    </div>
+
+</section>
+
+</main>
+
+
+<footer>
+
+    <div class="logo">
+        KAIRO<span>MODS</span>
+    </div>
+
+    <p>
+        © 2026 KAIRO Mods. BeamNG.drive mod database.
+    </p>
+
+</footer>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>
