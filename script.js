@@ -106,13 +106,11 @@ function renderMods() {
 
 
                 <a
-                    href="${mod.modsfire}"
-                    target="_blank"
-                    rel="noopener"
-                    class="download"
-                >
-                    DOWNLOAD
-                </a>
+    href="mod.html?id=${mod.id}"
+    class="download"
+>
+    VIEW MOD
+</a>
 
             </div>
 
