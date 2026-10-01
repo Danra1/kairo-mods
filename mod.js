@@ -12,9 +12,7 @@ async function loadMod() {
 
     if (!id) {
 
-        showError(
-            "Mod not found."
-        );
+        showError("Mod not found.");
 
         return;
 
@@ -37,9 +35,7 @@ async function loadMod() {
 
     if (!mod) {
 
-        showError(
-            "Mod not found."
-        );
+        showError("Mod not found.");
 
         return;
 
@@ -96,23 +92,17 @@ function renderMod(mod) {
 
 
                 <div class="category">
-
                     ${mod.category.toUpperCase()}
-
                 </div>
 
 
                 <h1>
-
                     ${mod.name}
-
                 </h1>
 
 
                 <p class="mod-description">
-
                     ${mod.description}
-
                 </p>
 
 
@@ -168,7 +158,9 @@ function renderMod(mod) {
                     class="big-download"
                 >
 
-                    DOWNLOAD MOD
+                    <span>
+                        DOWNLOAD MOD
+                    </span>
 
                     <small>
                         VIA MODSFIRE
@@ -196,14 +188,13 @@ function renderMod(mod) {
 
 
                 <p>
-
                     ${mod.description}
-
                 </p>
 
 
+
                 <h2>
-                    Mod information
+                    Mod Information
                 </h2>
 
 
@@ -234,6 +225,17 @@ function renderMod(mod) {
 
                     <div>
                         <span>
+                            MODEL
+                        </span>
+
+                        <strong>
+                            ${mod.model}
+                        </strong>
+                    </div>
+
+
+                    <div>
+                        <span>
                             YEAR
                         </span>
 
@@ -254,7 +256,152 @@ function renderMod(mod) {
                     </div>
 
 
+                    <div>
+                        <span>
+                            GAME VERSION
+                        </span>
+
+                        <strong>
+                            ${mod.gameVersion}
+                        </strong>
+                    </div>
+
+
+                    <div>
+                        <span>
+                            AUTHOR
+                        </span>
+
+                        <strong>
+                            ${mod.author}
+                        </strong>
+                    </div>
+
+
+                    <div>
+                        <span>
+                            DOWNLOADS
+                        </span>
+
+                        <strong>
+                            ${mod.downloads}
+                        </strong>
+                    </div>
+
+
                 </div>
+
+
+
+                <h2>
+                    Specifications
+                </h2>
+
+
+                <div class="specs">
+
+
+                    <div>
+
+                        <span>
+                            ENGINE
+                        </span>
+
+                        <strong>
+                            ${mod.engine}
+                        </strong>
+
+                    </div>
+
+
+                    <div>
+
+                        <span>
+                            POWER
+                        </span>
+
+                        <strong>
+                            ${mod.power}
+                        </strong>
+
+                    </div>
+
+
+                    <div>
+
+                        <span>
+                            DRIVE
+                        </span>
+
+                        <strong>
+                            ${mod.drive}
+                        </strong>
+
+                    </div>
+
+
+                </div>
+
+
+
+                <h2>
+                    Features
+                </h2>
+
+
+                <div class="features">
+
+                    ${
+                        mod.features
+                            .map(
+                                feature =>
+                                    `<div class="feature">
+                                        ✓ ${feature}
+                                    </div>`
+                            )
+                            .join("")
+                    }
+
+                </div>
+
+
+
+                <h2>
+                    Changelog
+                </h2>
+
+
+                <div class="changelog">
+
+                    ${
+                        mod.changelog
+                            .map(
+                                change =>
+                                    `<div>
+                                        • ${change}
+                                    </div>`
+                            )
+                            .join("")
+                    }
+
+                </div>
+
+
+
+                <a
+                    href="${mod.modsfire}"
+                    target="_blank"
+                    rel="noopener"
+                    class="final-download"
+                >
+
+                    DOWNLOAD ${mod.name.toUpperCase()}
+
+                    <span>
+                        MODSFIRE
+                    </span>
+
+                </a>
 
 
             </div>
