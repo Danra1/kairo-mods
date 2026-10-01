@@ -27,7 +27,14 @@
       "Fixed interior textures",
       "Added new wheels"
     ],
-    "image": "https://images.unsplash.com/photo-1555215695-3004980ad54e",
+    "image": "images/bmw-e39-m5/cover.jpg",
+
+"screenshots": [
+  "images/bmw-e39-m5/01.jpg",
+  "images/bmw-e39-m5/02.jpg",
+  "images/bmw-e39-m5/03.jpg",
+  "images/bmw-e39-m5/04.jpg"
+],
     "modsfire": "https://modsfire.com/"
   },
 
