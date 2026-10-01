@@ -140,29 +140,19 @@ function renderMods() {
 }
 
 
-function filterMods(category) {
+function filterMods(category, button) {
 
     currentCategory = category;
 
-
     document
         .querySelectorAll(".filter button")
-        .forEach(button => {
-
-            button.classList.remove("active");
-
+        .forEach(btn => {
+            btn.classList.remove("active");
         });
 
-
-    if (event && event.target) {
-
-        event.target.classList.add("active");
-
-    }
-
+    button.classList.add("active");
 
     renderMods();
-
 }
 
 
