@@ -1,0 +1,41 @@
+[
+  {
+    "id": "bmw-e39-m5",
+    "name": "BMW E39 M5",
+    "category": "cars",
+    "brand": "BMW",
+    "year": "1998-2003",
+    "version": "1.2",
+    "rating": "4.9",
+    "downloads": "12431",
+    "image": "https://images.unsplash.com/photo-1555215695-3004980ad54e",
+    "description": "BMW E39 M5 for BeamNG.drive.",
+    "modsfire": "https://modsfire.com/"
+  },
+  {
+    "id": "toyota-supra-mk4",
+    "name": "Toyota Supra MK4",
+    "category": "cars",
+    "brand": "Toyota",
+    "year": "1993-2002",
+    "version": "1.0",
+    "rating": "4.8",
+    "downloads": "9700",
+    "image": "https://images.unsplash.com/photo-1558981806-ec527fa84c39",
+    "description": "Toyota Supra MK4 modification.",
+    "modsfire": "https://modsfire.com/"
+  },
+  {
+    "id": "mountain-touge",
+    "name": "Mountain Touge",
+    "category": "maps",
+    "brand": "KAIRO",
+    "year": "2026",
+    "version": "1.0",
+    "rating": "4.7",
+    "downloads": "8200",
+    "image": "",
+    "description": "Mountain roads and touge racing map.",
+    "modsfire": "https://modsfire.com/"
+  }
+]
