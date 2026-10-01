@@ -1,58 +1,162 @@
-const cards = document.querySelectorAll(".mod-card");
-const searchInput = document.getElementById("search");
+let mods = [];
+let currentCategory = "all";
+
+
+async function loadMods() {
+
+    const response = await fetch("mods.json");
+
+    mods = await response.json();
+
+    renderMods();
+
+}
+
+
+function renderMods() {
+
+    const grid =
+        document.getElementById("modsGrid");
+
+    const search =
+        document
+            .getElementById("search")
+            .value
+            .toLowerCase()
+            .trim();
+
+
+    const filtered = mods.filter(mod => {
+
+        const categoryMatch =
+            currentCategory === "all" ||
+            mod.category === currentCategory;
+
+        const searchMatch =
+            mod.name
+                .toLowerCase()
+                .includes(search) ||
+
+            mod.brand
+                .toLowerCase()
+                .includes(search);
+
+        return categoryMatch && searchMatch;
+
+    });
+
+
+    grid.innerHTML = "";
+
+
+    filtered.forEach(mod => {
+
+        const card =
+            document.createElement("article");
+
+        card.className = "mod-card";
+
+
+        card.innerHTML = `
+
+            <div class="mod-image">
+
+                ${
+                    mod.image
+                    ?
+                    `<img src="${mod.image}"
+                          alt="${mod.name}">`
+                    :
+                    `<div class="placeholder">
+                        ${mod.name}
+                    </div>`
+                }
+
+            </div>
+
+
+            <div class="mod-info">
+
+                <div class="category">
+                    ${mod.category.toUpperCase()}
+                </div>
+
+
+                <h3>
+                    ${mod.name}
+                </h3>
+
+
+                <p>
+                    ${mod.description}
+                </p>
+
+
+                <div class="mod-bottom">
+
+                    <span>
+                        ⭐ ${mod.rating}
+                    </span>
+
+                    <span>
+                        ${mod.downloads} downloads
+                    </span>
+
+                </div>
+
+
+                <a
+                    href="${mod.modsfire}"
+                    target="_blank"
+                    rel="noopener"
+                    class="download"
+                >
+                    DOWNLOAD
+                </a>
+
+            </div>
+
+        `;
+
+
+        grid.appendChild(card);
+
+    });
+
+}
 
 
 function filterMods(category) {
 
-    cards.forEach(card => {
+    currentCategory = category;
 
-        const cardCategory =
-            card.dataset.category;
+    document
+        .querySelectorAll(".filter button")
+        .forEach(button => {
+            button.classList.remove("active");
+        });
 
-        if (
-            category === "all" ||
-            cardCategory === category
-        ) {
-            card.style.display = "block";
-        } else {
-            card.style.display = "none";
-        }
 
-    });
+    event.target.classList.add("active");
+
+    renderMods();
 
 }
 
 
 function searchMods() {
 
-    const query =
-        searchInput.value
-            .toLowerCase()
-            .trim();
-
-    cards.forEach(card => {
-
-        const text =
-            card.innerText.toLowerCase();
-
-        if (text.includes(query)) {
-            card.style.display = "block";
-        } else {
-            card.style.display = "none";
-        }
-
-    });
+    renderMods();
 
 }
 
 
-searchInput.addEventListener(
-    "keydown",
-    function(event) {
+document
+    .getElementById("search")
+    .addEventListener(
+        "input",
+        renderMods
+    );
 
-        if (event.key === "Enter") {
-            searchMods();
-        }
 
-    }
-);
+loadMods();
