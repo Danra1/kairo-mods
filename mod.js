@@ -1,3 +1,18 @@
+function assetPath(path) {
+
+    if (!path) return "";
+
+    if (
+        path.startsWith("/") ||
+        path.startsWith("http://") ||
+        path.startsWith("https://")
+    ) {
+        return path;
+    }
+
+    return "/" + path;
+}
+
 async function loadMod() {
 
     const params = new URLSearchParams(
@@ -96,7 +111,7 @@ function renderMod(mod) {
                 <div class="screenshot">
 
                     <img
-                        src="${image}"
+                        src="${assetPath(image)}"
                         alt="${mod.name} screenshot"
                         loading="lazy"
                     >
@@ -197,7 +212,7 @@ function renderMod(mod) {
                     ?
 
                     `<img
-                        src="${mod.image}"
+                        src="${assetPath(mod.image)}"
                         alt="${mod.name}"
                     >`
 
