@@ -123,14 +123,14 @@ function renderMods() {
          */
 
         card.addEventListener(
-            "click",
-            () => {
+    "click",
+    () => {
 
-                window.location.href =
-                    `mod.html?id=${mod.id}`;
+        window.location.href =
+            `mods/${mod.id}/`;
 
-            }
-        );
+    }
+);
 
 
         grid.appendChild(card);
