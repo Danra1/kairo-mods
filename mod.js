@@ -1,50 +1,39 @@
 async function loadMod() {
 
     const params = new URLSearchParams(
-    window.location.search
-);
+        window.location.search
+    );
 
-let id = params.get("id");
+    let id = params.get("id");
 
+    if (!id) {
 
-/*
- * Якщо це clean URL:
- * /mods/bmw-e39-m5/
- */
+        const parts =
+            window.location.pathname
+                .split("/")
+                .filter(Boolean);
 
-if (!id) {
+        const modsIndex =
+            parts.indexOf("mods");
 
-    const path =
-        window.location.pathname;
-
-    const parts =
-        path.split("/").filter(Boolean);
-
-
-    const modsIndex =
-        parts.indexOf("mods");
-
-
-    if (
-        modsIndex !== -1 &&
-        parts[modsIndex + 1]
-    ) {
-
-        id =
-            parts[modsIndex + 1];
-
+        if (
+            modsIndex !== -1 &&
+            parts[modsIndex + 1]
+        ) {
+            id = parts[modsIndex + 1];
+        }
     }
-
-}
 
     if (!id) {
         showError("Mod not found.");
         return;
     }
 
+    // Далі залишаємо решту твого коду
+
     try {
 
-        const response = await fetch("mods.json");
+        const response = await fetch("/mods.json");
 
         if (!response.ok) {
             throw new Error("Failed to load mods.json");
