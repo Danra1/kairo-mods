@@ -63,7 +63,13 @@
     "changelog": [
       "Initial release"
     ],
-    "image": "https://images.unsplash.com/photo-1558981806-ec527fa84c39",
+    "image": "/images/toyota-supra-mk4/cover.jpg",
+
+"screenshots": [
+    "/images/toyota-supra-mk4/01.jpg",
+    "/images/toyota-supra-mk4/02.jpg",
+    "/images/toyota-supra-mk4/03.jpg"
+],
     "modsfire": "https://modsfire.com/"
   },
 
