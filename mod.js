@@ -186,7 +186,7 @@ function renderMod(mod) {
 
         <div class="mod-back">
 
-            <a href="index.html">
+            <a href="/">
 
                 ← BACK TO MODS
 
@@ -753,7 +753,7 @@ function showError(message) {
             </p>
 
             <a
-                href="index.html"
+                href="/"
                 class="download"
             >
                 BACK TO MODS
