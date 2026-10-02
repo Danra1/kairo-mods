@@ -1,10 +1,41 @@
 async function loadMod() {
 
     const params = new URLSearchParams(
-        window.location.search
-    );
+    window.location.search
+);
 
-    const id = params.get("id");
+let id = params.get("id");
+
+
+/*
+ * Якщо це clean URL:
+ * /mods/bmw-e39-m5/
+ */
+
+if (!id) {
+
+    const path =
+        window.location.pathname;
+
+    const parts =
+        path.split("/").filter(Boolean);
+
+
+    const modsIndex =
+        parts.indexOf("mods");
+
+
+    if (
+        modsIndex !== -1 &&
+        parts[modsIndex + 1]
+    ) {
+
+        id =
+            parts[modsIndex + 1];
+
+    }
+
+}
 
     if (!id) {
         showError("Mod not found.");
