@@ -1531,3 +1531,63 @@ footer {
     line-height: 1.7;
     margin-bottom: 50px;
 }
+/* =========================
+   CONTACT
+========================= */
+
+.contact-box {
+    margin-top: 50px;
+
+    border-top: 1px solid #222;
+}
+
+.contact-item {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+
+    gap: 30px;
+
+    padding: 25px 0;
+
+    border-bottom: 1px solid #222;
+}
+
+.contact-item > span {
+    min-width: 160px;
+
+    color: #555;
+
+    font-size: 9px;
+    font-weight: 900;
+    letter-spacing: 2px;
+}
+
+.contact-item a {
+    color: #aaa;
+
+    text-decoration: none;
+
+    font-size: 14px;
+
+    transition: .2s ease;
+}
+
+.contact-item a:hover {
+    color: white;
+}
+
+.contact-item p {
+    margin: 0;
+
+    max-width: 550px;
+}
+
+@media (max-width: 600px) {
+
+    .contact-item {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+}
