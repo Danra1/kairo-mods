@@ -1482,3 +1482,52 @@ footer {
     }
 
 }
+/* =========================
+   SIMPLE PAGES
+========================= */
+
+.simple-page {
+    min-height: 65vh;
+    padding: 90px 25px;
+}
+
+.simple-page-inner {
+    max-width: 850px;
+    margin: 0 auto;
+}
+
+.simple-page h1 {
+    margin: 20px 0 35px;
+
+    font-size: clamp(50px, 8vw, 100px);
+    line-height: .9;
+    letter-spacing: -4px;
+}
+
+.simple-page h1 span {
+    color: #555;
+}
+
+.simple-page h2 {
+    margin-top: 60px;
+    margin-bottom: 20px;
+
+    font-size: 25px;
+    color: white;
+}
+
+.simple-page p {
+    max-width: 750px;
+
+    color: #777;
+
+    font-size: 15px;
+    line-height: 1.8;
+}
+
+.simple-page .lead {
+    color: #aaa;
+    font-size: 19px;
+    line-height: 1.7;
+    margin-bottom: 50px;
+}
